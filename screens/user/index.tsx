@@ -1,12 +1,12 @@
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import * as React from "react";
-import * as RN from "react-native";
-import useSWR from "swr";
-import { NavigableHeader } from "@/components/navigable-header";
-import { StoryCard } from "@/components/story-card";
-import { styles, useDash } from "@/dash";
-import type { StackParamList } from "@/screens/routers";
-import type { HackerNewsUser } from "@/types/hn-api";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import * as React from 'react';
+import * as RN from 'react-native';
+import useSWR from 'swr';
+import { NavigableHeader } from '@/components/navigable-header';
+import { StoryCard } from '@/components/story-card';
+import { styles, useDash } from '@/dash';
+import type { StackParamList } from '@/screens/routers';
+import type { HackerNewsUser } from '@/types/hn-api';
 
 export function User(props: UserProps) {
   useDash();
@@ -18,8 +18,8 @@ export function User(props: UserProps) {
     `https://hacker-news.firebaseio.com/v0/user/${id}.json`,
     (key) =>
       fetch(key, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
       }).then((res) => res.json())
   );
   const [didMount, setDidMount] = React.useState(false);
@@ -35,7 +35,7 @@ export function User(props: UserProps) {
         title={id}
         actions={{
           options: {
-            options: ["Share", "Open in Browser", "Cancel"],
+            options: ['Share', 'Open in Browser', 'cancel'],
           },
           callback(index) {
             switch (index) {
@@ -46,7 +46,7 @@ export function User(props: UserProps) {
                 });
                 break;
               case 1:
-                props.navigation.push("BrowserModal", {
+                props.navigation.push('BrowserModal', {
                   title: id,
                   url: `https://news.ycombinator.com/user?id=${id}`,
                 });
@@ -101,9 +101,9 @@ function renderFlatListItem({ item, index }: { item: number; index: number }) {
 
 const container = styles.one<RN.ViewStyle>((t) => ({
   backgroundColor: t.color.bodyBg,
-  height: "100%",
-  width: "100%",
+  height: '100%',
+  width: '100%',
 }));
 
 export interface UserProps
-  extends NativeStackScreenProps<StackParamList, "User"> {}
+  extends NativeStackScreenProps<StackParamList, 'User'> {}
